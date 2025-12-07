@@ -410,12 +410,12 @@
             };
 
             // Format Address for display
-            let fullAddress = ${data.addressLine1};
-            if (data.addressLine2) fullAddress += , ${data.addressLine2};
-            fullAddress += <br>${data.city}, ${data.state} ${data.zipCode}, ${data.country};
+            let fullAddress = `${data.addressLine1}`;
+            if (data.addressLine2) fullAddress += `, ${data.addressLine2}`;
+            fullAddress += `<br>${data.city}, ${data.state} ${data.zipCode}, ${data.country}`;
 
             // Populate the summary page elements
-            document.getElementById('summary-fullName').textContent = ${data.firstName} ${data.lastName};
+            document.getElementById('summary-fullName').textContent = `${data.firstName} ${data.lastName}`;
             document.getElementById('summary-dob').textContent = data.dob;
             document.getElementById('summary-gender').textContent = data.gender;
             document.getElementById('summary-email').textContent = data.email;
