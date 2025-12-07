@@ -6,34 +6,37 @@
     <title>Professional User Registration & Summary</title>
     <style>
         :root {
-            --primary-color: #007bff; /* Professional Blue */
-            --secondary-color: #6c757d;
-            --text-color: #343a40;
-            --bg-color: #e9ecef;
+            /* Light blue theme */
+            --primary-color: #0d6efd;     /* Bootstrap-ish blue */
+            --secondary-color: #495057;
+            --text-color: #212529;
+            --bg-color: #e3f2fd;          /* Light blue background */
             --card-bg: #ffffff;
             --error-color: #dc3545;
             --success-color: #28a745;
-            --border-radius: 8px;
+            --border-radius: 10px;
         }
 
         body {
-            font-family: 'Roboto', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg-color);
+            font-family: "Times New Roman", Times, serif;
+            background: radial-gradient(circle at top, #e3f2fd 0, #bbdefb 40%, #90caf9 100%);
             display: flex;
             justify-content: center;
             align-items: center; 
             min-height: 100vh;
             padding: 40px 20px;
             margin: 0;
+            color: var(--text-color);
         }
 
         .container {
-            background-color: var(--card-bg);
+            background: linear-gradient(145deg, #ffffff, #f1f8ff);
             padding: 40px;
             border-radius: var(--border-radius);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 18px 40px rgba(0, 0, 0, 0.12);
             width: 100%;
             max-width: 800px;
+            border: 1px solid rgba(13, 110, 253, 0.15);
         }
         
         /* --- General Styling --- */
@@ -43,16 +46,19 @@
             margin-bottom: 30px;
             border-bottom: 2px solid var(--primary-color);
             padding-bottom: 10px;
+            letter-spacing: 0.05em;
         }
 
         .form-section-title {
-            color: var(--text-color);
-            font-size: 1.2em;
+            color: var(--secondary-color);
+            font-size: 1.05em;
             font-weight: 700;
             margin-top: 25px;
             margin-bottom: 15px;
             padding-left: 10px;
             border-left: 4px solid var(--primary-color);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
         }
 
         .form-row {
@@ -71,7 +77,8 @@
             display: block;
             margin-bottom: 6px;
             font-weight: 500;
-            color: var(--text-color);
+            color: var(--secondary-color);
+            font-size: 0.95rem;
         }
 
         input[type="text"],
@@ -82,52 +89,99 @@
         select {
             width: 100%;
             padding: 10px 12px;
-            border: 1px solid #ced4da;
+            border: 1px solid rgba(173, 181, 189, 0.8);
             border-radius: var(--border-radius);
-            box-sizing: border-box; 
-            transition: border-color 0.3s, box-shadow 0.3s;
+            box-sizing: border-box;
+            background-color: #f8faff;
+            color: var(--text-color);
+            transition: border-color 0.25s, box-shadow 0.25s, transform 0.05s, background-color 0.25s;
         }
 
-        /* Styling specifically for the file input */
         input[type="file"] {
-            padding: 7px 12px; /* Less padding to fit button inside */
+            padding: 7px 12px;
             line-height: normal; 
+            color: var(--secondary-color);
         }
         
         input:focus, select:focus {
             border-color: var(--primary-color);
             outline: none;
-            box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+            box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.25);
+            background-color: #ffffff;
+            transform: translateY(-1px);
         }
 
         .error-message {
             color: var(--error-color);
             font-size: 0.8em;
             margin-top: 5px;
-            height: 1em; 
+            min-height: 1em; 
+            text-align: left;
+        }
+
+        .password-helper {
+            font-size: 0.8em;
+            color: var(--secondary-color);
+            margin-top: 4px;
+        }
+
+        .password-strength {
+            margin-top: 6px;
+            height: 6px;
+            border-radius: 999px;
+            background-color: #e9ecef;
+            overflow: hidden;
+        }
+
+        .password-strength-bar {
+            height: 100%;
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        .strength-weak {
+            background-color: #ff4d6a;
+        }
+
+        .strength-medium {
+            background-color: #ffc107;
+        }
+
+        .strength-strong {
+            background-color: #28a745;
         }
 
         button[type="submit"] {
             width: 100%;
             padding: 12px;
             margin-top: 30px;
-            background-color: var(--primary-color);
+            background: linear-gradient(135deg, #0d6efd, #4dabf7);
             color: white;
             border: none;
             border-radius: var(--border-radius);
-            font-size: 18px;
+            font-size: 17px;
             font-weight: 600;
             cursor: pointer;
-            transition: background-color 0.3s, transform 0.1s;
+            transition: transform 0.08s ease-out, box-shadow 0.25s ease-out, filter 0.25s;
+            box-shadow: 0 8px 18px rgba(13, 110, 253, 0.35);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
         }
 
         button[type="submit"]:hover {
-            background-color: #0056b3;
+            filter: brightness(1.06);
+            box-shadow: 0 12px 24px rgba(13, 110, 253, 0.45);
+            transform: translateY(-1px);
+        }
+
+        button[type="submit"]:active {
+            transform: translateY(1px) scale(0.99);
+            box-shadow: 0 5px 10px rgba(13, 110, 253, 0.3);
         }
         
         /* --- Confirmation Styling --- */
         #confirmationPage {
-            display: none; /* Initially hidden */
+            display: none;
             text-align: center;
         }
 
@@ -146,15 +200,16 @@
             text-align: left;
             margin-top: 30px;
             padding: 20px;
-            background-color: #f8f9fa;
+            background: #f1f8ff;
             border-radius: var(--border-radius);
+            border: 1px solid rgba(13, 110, 253, 0.15);
         }
 
         .summary-item {
             display: flex;
             justify-content: space-between;
             padding: 8px 0;
-            border-bottom: 1px dashed #e9ecef;
+            border-bottom: 1px dashed rgba(173, 181, 189, 0.4);
         }
 
         .summary-item:last-child {
@@ -181,6 +236,25 @@
             border: 3px solid var(--success-color);
             margin: 10px auto 20px auto;
             display: block;
+        }
+
+        #registerAgainBtn {
+            background: linear-gradient(135deg, #28a745, #6fdc6f);
+            margin-top: 20px;
+            border: none;
+            border-radius: var(--border-radius);
+            padding: 12px 18px;
+            color: #fff;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 8px 18px rgba(40, 167, 69, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        #registerAgainBtn:hover {
+            filter: brightness(1.05);
+            box-shadow: 0 12px 24px rgba(40, 167, 69, 0.45);
         }
 
         /* Responsive Design */
@@ -216,18 +290,18 @@
                 <div class="form-section-title">Personal Information</div>
                 <div class="form-row">
                     <div class="form-group">
-                        <label for="firstName">First Name <span style="color:red;">*</span></label>
+                        <label for="firstName">First Name <span style="color:#dc3545;">*</span></label>
                         <input type="text" id="firstName" name="firstName" required>
                     </div>
                     <div class="form-group">
-                        <label for="lastName">Last Name <span style="color:red;">*</span></label>
+                        <label for="lastName">Last Name <span style="color:#dc3545;">*</span></label>
                         <input type="text" id="lastName" name="lastName" required>
                     </div>
                 </div>
 
                 <div class="form-row">
                     <div class="form-group">
-                        <label for="dob">Date of Birth <span style="color:red;">*</span></label>
+                        <label for="dob">Date of Birth <span style="color:#dc3545;">*</span></label>
                         <input type="date" id="dob" name="dob" required>
                     </div>
                     <div class="form-group">
@@ -246,25 +320,25 @@
                         <label for="userPhoto">User Photo (Optional)</label>
                         <input type="file" id="userPhoto" name="userPhoto" accept="image/*">
                     </div>
-                    <div class="form-group">
-                        </div>
+                    <div class="form-group"></div>
                 </div>
+
                 <div class="form-section-title">Contact Information</div>
                 <div class="form-row">
                     <div class="form-group">
-                        <label for="email">Email Address <span style="color:red;">*</span></label>
+                        <label for="email">Email Address <span style="color:#dc3545;">*</span></label>
                         <input type="email" id="email" name="email" required>
                     </div>
                     <div class="form-group">
                         <label for="phone">Phone Number</label>
-                        <input type="tel" id="phone" name="phone">
+                        <input type="tel" id="phone" name="phone" pattern="[0-9+\\-\\s]{7,15}" placeholder="Optional, 7–15 digits/symbols">
                     </div>
                 </div>
 
                 <div class="form-section-title">Residential Address</div>
                 <div class="form-row">
                     <div class="form-group">
-                        <label for="addressLine1">Address Line 1 <span style="color:red;">*</span></label>
+                        <label for="addressLine1">Address Line 1 <span style="color:#dc3545;">*</span></label>
                         <input type="text" id="addressLine1" name="addressLine1" required>
                     </div>
                     <div class="form-group">
@@ -274,7 +348,7 @@
                 </div>
                 <div class="form-row">
                     <div class="form-group">
-                        <label for="city">City <span style="color:red;">*</span></label>
+                        <label for="city">City <span style="color:#dc3545;">*</span></label>
                         <input type="text" id="city" name="city" required>
                     </div>
                     <div class="form-group">
@@ -284,11 +358,11 @@
                 </div>
                 <div class="form-row">
                     <div class="form-group">
-                        <label for="zipCode">Zip/Postal Code <span style="color:red;">*</span></label>
+                        <label for="zipCode">Zip/Postal Code <span style="color:#dc3545;">*</span></label>
                         <input type="text" id="zipCode" name="zipCode" required>
                     </div>
                     <div class="form-group">
-                        <label for="country">Country <span style="color:red;">*</span></label>
+                        <label for="country">Country <span style="color:#dc3545;">*</span></label>
                         <select id="country" name="country" required>
                             <option value="">Select Country</option>
                             <option value="United States">United States</option>
@@ -302,19 +376,24 @@
                 <div class="form-section-title">Account Details</div>
                 <div class="form-row">
                     <div class="form-group">
-                        <label for="username">Username <span style="color:red;">*</span></label>
-                        <input type="text" id="username" name="username" required>
+                        <label for="username">Username <span style="color:#dc3545;">*</span></label>
+                        <input type="text" id="username" name="username" required minlength="4">
                     </div>
-                    <div class="form-group">
-                         </div>
+                    <div class="form-group"></div>
                 </div>
                 <div class="form-row">
                     <div class="form-group">
-                        <label for="password">Password <span style="color:red;">*</span></label>
+                        <label for="password">Password <span style="color:#dc3545;">*</span></label>
                         <input type="password" id="password" name="password" required minlength="8">
+                        <div class="password-helper">
+                            Must be at least 8 characters and include uppercase, lowercase, number, and symbol.
+                        </div>
+                        <div class="password-strength">
+                            <div id="passwordStrengthBar" class="password-strength-bar"></div>
+                        </div>
                     </div>
                     <div class="form-group">
-                        <label for="confirmPassword">Confirm Password <span style="color:red;">*</span></label>
+                        <label for="confirmPassword">Confirm Password <span style="color:#dc3545;">*</span></label>
                         <input type="password" id="confirmPassword" name="confirmPassword" required>
                     </div>
                 </div>
@@ -362,68 +441,130 @@
                     <span class="summary-value" id="summary-username"></span>
                 </div>
             </div>
-            <button onclick="window.location.reload()" style="background-color: var(--success-color); margin-top: 20px;">Register Another Account</button>
+            <button id="registerAgainBtn" onclick="window.location.reload()">Register Another Account</button>
         </div>
 
     </div>
 
     <script>
+        const passwordInput = document.getElementById('password');
+        const passwordStrengthBar = document.getElementById('passwordStrengthBar');
+        const passwordError = document.getElementById('passwordError');
+
+        function evaluatePasswordStrength(password) {
+            let score = 0;
+            if (password.length >= 8) score++;
+            if (/[a-z]/.test(password)) score++;
+            if (/[A-Z]/.test(password)) score++;
+            if (/[0-9]/.test(password)) score++;
+            if (/[^A-Za-z0-9]/.test(password)) score++;
+            return score;
+        }
+
+        function updatePasswordStrength() {
+            const password = passwordInput.value;
+            const score = evaluatePasswordStrength(password);
+
+            passwordStrengthBar.className = 'password-strength-bar'; // reset
+
+            if (!password) {
+                passwordStrengthBar.style.width = '0%';
+                return;
+            }
+
+            if (score <= 2) {
+                passwordStrengthBar.style.width = '33%';
+                passwordStrengthBar.classList.add('strength-weak');
+            } else if (score === 3 || score === 4) {
+                passwordStrengthBar.style.width = '66%';
+                passwordStrengthBar.classList.add('strength-medium');
+            } else {
+                passwordStrengthBar.style.width = '100%';
+                passwordStrengthBar.classList.add('strength-strong');
+            }
+        }
+
+        passwordInput.addEventListener('input', updatePasswordStrength);
+
+        function isStrongPassword(password) {
+            const lengthOK = password.length >= 8;
+            const lower = /[a-z]/.test(password);
+            const upper = /[A-Z]/.test(password);
+            const number = /[0-9]/.test(password);
+            const symbol = /[^A-Za-z0-9]/.test(password);
+            return lengthOK && lower && upper && number && symbol;
+        }
+
         function validateAndSubmit(event) {
-            // 1. Prevent default form submission
             event.preventDefault(); 
             
             const password = document.getElementById('password').value;
             const confirmPassword = document.getElementById('confirmPassword').value;
-            const errorElement = document.getElementById('passwordError');
 
-            // 2. Perform Validation
+            const form = document.getElementById('proRegistrationForm');
+            if (!form.checkValidity()) {
+                form.reportValidity();
+                return false;
+            }
+
             if (password !== confirmPassword) {
-                errorElement.textContent = "Passwords do not match. Please check your input.";
+                passwordError.textContent = "Passwords do not match. Please check your input.";
                 document.getElementById('confirmPassword').focus();
                 return false;
-            } else {
-                errorElement.textContent = "";
-                
-                // 3. Collect Data and Display Summary
-                collectAndShowSummary();
-                return true;
             }
+
+            if (!isStrongPassword(password)) {
+                passwordError.textContent = "Password is too weak. Follow the required pattern (upper, lower, number, symbol).";
+                document.getElementById('password').focus();
+                return false;
+            }
+
+            passwordError.textContent = "";
+            collectAndShowSummary();
+            return true;
         }
 
         function collectAndShowSummary() {
-            // Get values from the form fields
             const data = {
-                firstName: document.getElementById('firstName').value,
-                lastName: document.getElementById('lastName').value,
+                firstName: document.getElementById('firstName').value.trim(),
+                lastName: document.getElementById('lastName').value.trim(),
                 dob: document.getElementById('dob').value,
                 gender: document.getElementById('gender').value || 'N/A',
-                email: document.getElementById('email').value,
-                phone: document.getElementById('phone').value || 'N/A',
-                addressLine1: document.getElementById('addressLine1').value,
-                addressLine2: document.getElementById('addressLine2').value,
-                city: document.getElementById('city').value,
-                state: document.getElementById('state').value,
-                zipCode: document.getElementById('zipCode').value,
+                email: document.getElementById('email').value.trim(),
+                phone: document.getElementById('phone').value.trim() || 'N/A',
+                addressLine1: document.getElementById('addressLine1').value.trim(),
+                addressLine2: document.getElementById('addressLine2').value.trim(),
+                city: document.getElementById('city').value.trim(),
+                state: document.getElementById('state').value.trim(),
+                zipCode: document.getElementById('zipCode').value.trim(),
                 country: document.getElementById('country').value,
-                username: document.getElementById('username').value,
+                username: document.getElementById('username').value.trim(),
                 userPhotoFile: document.getElementById('userPhoto').files[0] 
             };
 
-            // Format Address for display
+            let formattedDob = data.dob;
+            if (data.dob) {
+                const d = new Date(data.dob);
+                if (!isNaN(d.getTime())) {
+                    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+                    formattedDob = d.toLocaleDateString(undefined, options);
+                }
+            }
+
             let fullAddress = `${data.addressLine1}`;
             if (data.addressLine2) fullAddress += `, ${data.addressLine2}`;
-            fullAddress += `<br>${data.city}, ${data.state} ${data.zipCode}, ${data.country}`;
+            fullAddress += `<br>${data.city}`;
+            if (data.state) fullAddress += `, ${data.state}`;
+            fullAddress += ` ${data.zipCode}, ${data.country}`;
 
-            // Populate the summary page elements
             document.getElementById('summary-fullName').textContent = `${data.firstName} ${data.lastName}`;
-            document.getElementById('summary-dob').textContent = data.dob;
+            document.getElementById('summary-dob').textContent = formattedDob;
             document.getElementById('summary-gender').textContent = data.gender;
             document.getElementById('summary-email').textContent = data.email;
             document.getElementById('summary-phone').textContent = data.phone;
             document.getElementById('summary-address').innerHTML = fullAddress; 
             document.getElementById('summary-username').textContent = data.username;
 
-            // Handle Photo Preview (only for modern browsers that support FileReader)
             const photoElement = document.getElementById('summary-photo');
             if (data.userPhotoFile) {
                 const reader = new FileReader();
@@ -436,7 +577,6 @@
                 photoElement.style.display = 'none';
             }
             
-            // 4. Swap Visibility
             document.getElementById('registrationContainer').style.display = 'none';
             document.getElementById('confirmationPage').style.display = 'block';
         }
